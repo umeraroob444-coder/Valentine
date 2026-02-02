@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Zeenish ❤️</title>
+    <style>
+        body {
+            background-color: #ffeef2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 6px solid #ffcad4;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gif-row {
+            display: none; 
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .gif-row img {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 3px solid #ffcad4;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        #final-message {
+            display: none;
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            animation: bounce 0.5s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 20px;
+            min-height: 120px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .yes-btn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+            white-space: nowrap;
+        }
+
+        .no-btn {
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .shy-text {
+            font-size: 0.9rem;
+            color: #b1b1b1;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ffb6c1;
+            font-size: 20px;
+            user-select: none;
+            animation: float 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        let yesScale = 1;
+
+        function moveButton(noBtn) {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+
+            const yesBtn = document.querySelector('.yes-btn');
+            yesScale += 0.25; 
+            yesBtn.style.transform = `scale(${yesScale})`;
+        }
+
+        function handleYes() {
+            document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('.shy-text').style.display = 'none';
+            document.querySelector('.photo-frame').style.display = 'none';
+
+            document.getElementById('final-message').style.display = 'block';
+            document.querySelector('.gif-row').style.display = 'flex';
+        }
+    </script>
+
+    <div class="card">
+        <div class="photo-frame">
+            <img src="cute.jpeg" alt="Our Photo">
+        </div>
+
+        <div class="gif-row">
+            <img src="celebrate1.gif" alt="celebrating">
+            <img src="celebrate2.gif" alt="celebrating">
+            <img src="celebrate3.gif" alt="celebrating">
+            <img src="celebrate4.gif" alt="celebrating">
+        </div>
+        
+        <h1>Zeenish will you be my valentine</h1>
+        
+        <div id="final-message">FINALLYYYY!!!! 🫣</div>
+        
+        <div class="buttons">
+            <button class="btn yes-btn" onclick="handleYes()">Yes!</button>
+            <button class="btn no-btn" onmouseover="moveButton(this)">No</button>
+        </div>
+
+        <p class="shy-text">the no button seems a little shy 😉</p>
+    </div>
+
+</body>
+</html>
